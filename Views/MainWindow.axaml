@@ -3,8 +3,10 @@
         xmlns:vm="clr-namespace:SpotiStore.ViewModels;assembly=SpotiStore"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:views="clr-namespace:SpotiStore.Views"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
         x:Class="SpotiStore.Views.MainWindow"
+        Width="350" Height="700"
         Icon="/Assets/avalonia-logo.ico"
         Title="SpotiStore">
 
@@ -12,6 +14,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <views:PlaylistFinderView/>
 
 </Window>
+
