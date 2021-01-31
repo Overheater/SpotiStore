@@ -6,10 +6,17 @@
              x:Class="SpotiStore.Views.PlaylistFinderView">
 
   <DockPanel>
-    <Button DockPanel.Dock="Bottom">Add an item</Button>
+    <Button DockPanel.Dock="Bottom">Archive Selections</Button>
+    <ProgressBar DockPanel.Dock="Bottom"></ProgressBar>
     <StackPanel>
-      <CheckBox Margin="4">Walk the dog</CheckBox>
-      <CheckBox Margin="4">Buy some milk</CheckBox>
+        <TextBox Margin="4" Watermark="Spotify UserID"></TextBox>
+        <Button Content="{Binding UserSearchText}" Click="{Binding Get_User}">Get User</Button>
+        <ComboBox Margin="4" SelectedIndex="0">
+          <ComboBoxItem>Inline Items</ComboBoxItem>
+          <ComboBoxItem>Inline Item 2</ComboBoxItem>
+          <ComboBoxItem>Inline Item 3</ComboBoxItem>
+          <ComboBoxItem>Inline Item 4</ComboBoxItem>
+        </ComboBox>
     </StackPanel>
   </DockPanel>
 </UserControl>
