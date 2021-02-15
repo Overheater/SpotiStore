@@ -19,7 +19,7 @@ namespace SpotiStore.Extensions
         {
             var playlist = await aPI.SpotifyClient.Playlists.Get(PlaylistID);
             //TODO: get null check working to ensure the playlist is correct
-            return  new Playlist(playlist)
+            return new Playlist(playlist);
         }
     }
 }
