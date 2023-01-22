@@ -6,10 +6,9 @@
         xmlns:views="clr-namespace:SpotiStore.Views"
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
         x:Class="SpotiStore.Views.MainWindow"
-        Width="350" Height="700"
+        Width="350" Height="150"
         Icon="/Assets/avalonia-logo.ico"
         Title="SpotiStore">
-
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>

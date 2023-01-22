@@ -9,14 +9,15 @@
     <Button DockPanel.Dock="Bottom">Archive Selections</Button>
     <ProgressBar DockPanel.Dock="Bottom"></ProgressBar>
     <StackPanel>
-        <TextBox Margin="4" Watermark="Spotify UserID"></TextBox>
-        <Button Content="{Binding UserSearchText}" Click="{Binding Get_User}">Get User</Button>
-        <ComboBox Margin="4" SelectedIndex="0">
+        <TextBox Margin="4" Watermark="Spotify Playlist ID"></TextBox>
+        <!--<Button Content="{Binding UserSearchText}" Click="{Binding Get_User}">Get User</Button>-->
+        <!--<ComboBox Margin="4" SelectedIndex="0">
           <ComboBoxItem>Inline Items</ComboBoxItem>
           <ComboBoxItem>Inline Item 2</ComboBoxItem>
           <ComboBoxItem>Inline Item 3</ComboBoxItem>
           <ComboBoxItem>Inline Item 4</ComboBoxItem>
-        </ComboBox>
+        </ComboBox>-->
+      <CheckBox Margin="4">Include Discogs Links</CheckBox>
     </StackPanel>
   </DockPanel>
 </UserControl>

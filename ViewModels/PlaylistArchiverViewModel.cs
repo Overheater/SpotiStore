@@ -15,10 +15,10 @@ namespace SpotiStore.ViewModels
         private User User;
         public string UserSearchText = "Search Spotify Users";
 
-        public User Get_User(string userId)
-        {
-            var user = API.GetUser(userId);
-            return new User();
-        }
+        //public User Get_User(string userId)
+        //{
+        //    var user = API.GetUser(userId);
+        //    return new User();
+        //}
     }
 }

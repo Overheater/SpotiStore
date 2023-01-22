@@ -30,7 +30,9 @@ namespace SpotiStore.Models
                 }
                 else if(item.Track is FullEpisode episode)
                 {
-                    middle.Add(new Episode(episode, item.AddedAt));
+                    continue;
+                    //Building out podcast support is pushed back
+                    //middle.Add(new Episode(episode, item.AddedAt));
                 }
             }
             return middle;
