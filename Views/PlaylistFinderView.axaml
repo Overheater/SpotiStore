@@ -9,7 +9,26 @@
     <Button DockPanel.Dock="Bottom">Archive Selections</Button>
     <ProgressBar DockPanel.Dock="Bottom"></ProgressBar>
     <StackPanel>
+      
+      <Panel>
         <TextBox Margin="4" Watermark="Spotify Playlist ID"></TextBox>
+        <Button Margin="4" HorizontalAlignment="Right">Search</Button>
+      </Panel>
+      <Panel>
+        <TextBlock Margin="4" HorizontalAlignment="Left">Playlist Name:</TextBlock>
+      </Panel>
+      <ScrollViewer>
+        <StackPanel Tag="Data Option">
+          <CheckBox Margin="4">Track number</CheckBox>
+          <CheckBox Margin="4">Song Title</CheckBox>
+          <CheckBox Margin="4">Artist Name</CheckBox>
+          <CheckBox Margin="4">Album Name</CheckBox>
+          <CheckBox Margin="4">Album Release Year</CheckBox>
+          <CheckBox Margin="4">Album Publisher</CheckBox>
+          <CheckBox Margin="4">Discogs Links</CheckBox>
+        </StackPanel>
+      </ScrollViewer>
+
         <!--<Button Content="{Binding UserSearchText}" Click="{Binding Get_User}">Get User</Button>-->
         <!--<ComboBox Margin="4" SelectedIndex="0">
           <ComboBoxItem>Inline Items</ComboBoxItem>
@@ -17,7 +36,7 @@
           <ComboBoxItem>Inline Item 3</ComboBoxItem>
           <ComboBoxItem>Inline Item 4</ComboBoxItem>
         </ComboBox>-->
-      <CheckBox Margin="4">Include Discogs Links</CheckBox>
+      <!--<CheckBox Margin="4">Include Discogs Links</CheckBox>-->
     </StackPanel>
   </DockPanel>
 </UserControl>
