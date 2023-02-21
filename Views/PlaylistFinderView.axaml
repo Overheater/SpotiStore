@@ -4,18 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="700"
              x:Class="SpotiStore.Views.PlaylistFinderView">
-
   <DockPanel>
-    <Button DockPanel.Dock="Bottom">Archive Selections</Button>
+    <Button  DockPanel.Dock="Bottom">Archive Selections</Button>
     <ProgressBar DockPanel.Dock="Bottom"></ProgressBar>
     <StackPanel>
-      
+
       <Panel>
-        <TextBox Margin="4" Watermark="Spotify Playlist ID"></TextBox>
-        <Button Margin="4" HorizontalAlignment="Right">Search</Button>
+        <TextBox Margin="4" Text="{Binding PlaylistID}" Watermark="Spotify Playlist ID"></TextBox>
+        <Button Margin="4" Command="{Binding QueryPlaylist}" HorizontalAlignment="Right">Search</Button>
       </Panel>
       <Panel>
-        <TextBlock Margin="4" HorizontalAlignment="Left">Playlist Name:</TextBlock>
+        <TextBlock Margin="4"  Width="225" FontWeight="Bold" Text="{Binding PlaylistName, Mode=OneWay}" HorizontalAlignment="Left"> </TextBlock>
       </Panel>
       <ScrollViewer>
         <StackPanel Tag="Data Option">
@@ -28,15 +27,6 @@
           <CheckBox Margin="4">Discogs Links</CheckBox>
         </StackPanel>
       </ScrollViewer>
-
-        <!--<Button Content="{Binding UserSearchText}" Click="{Binding Get_User}">Get User</Button>-->
-        <!--<ComboBox Margin="4" SelectedIndex="0">
-          <ComboBoxItem>Inline Items</ComboBoxItem>
-          <ComboBoxItem>Inline Item 2</ComboBoxItem>
-          <ComboBoxItem>Inline Item 3</ComboBoxItem>
-          <ComboBoxItem>Inline Item 4</ComboBoxItem>
-        </ComboBox>-->
-      <!--<CheckBox Margin="4">Include Discogs Links</CheckBox>-->
     </StackPanel>
   </DockPanel>
 </UserControl>

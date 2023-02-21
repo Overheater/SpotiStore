@@ -12,7 +12,7 @@
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <views:PlaylistFinderView/>
+  <views:PlaylistFinderView/>
 
 </Window>
 
