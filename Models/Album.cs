@@ -11,13 +11,17 @@ namespace SpotiStore.Models
         public string ID { get; set; }
 
         public string ArtistName { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        /// <summary>
+        /// while many albums have the correct date, some lesser known albums only have a year, which seems to cause date parse functions to never return. currently set as a string
+        /// </summary>
+        //TODO: find a better date parse system to allow for year releases.
+        public string  ReleaseDate { get; set; }
 
         public Album(SimpleAlbum album)
         {
             Name = album.Name;
             ID = album.Id;
-            ReleaseDate = DateTime.Parse(album.ReleaseDate);
+            ReleaseDate = album.ReleaseDate;
 
         }
     }
