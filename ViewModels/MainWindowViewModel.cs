@@ -1,9 +1,13 @@
-﻿using ReactiveUI;
+﻿using CsvHelper;
+using ReactiveUI;
 using SkiaSharp;
 using SpotiStore.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,9 +51,23 @@ namespace SpotiStore.ViewModels
             RaisePropertyChanged(playlistName);
             return playlist.Name;
         }
-        public void ArchivePlaylist()
+        public async Task<bool> ArchivePlaylist()
         {
-            return;
+            if(playlistID == null)
+            {
+                //TODO: Add error handling here for when a user hasn't queried a playlist yet.
+
+                return false;
+            }
+            var spotifyPlaylist =  spotifyClient.Playlists.Get(PlaylistID);
+            var test = spotifyPlaylist.GetAwaiter().GetResult();
+            var playlist = new Playlist(test);
+            using (var writer = new StreamWriter("C:\\Users\\ianpo\\Desktop\\Test.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(playlist.PlaylistSongs.Select(p=>(Song)p));
+            }
+            return true;
         }
         public MainWindowViewModel()
         {

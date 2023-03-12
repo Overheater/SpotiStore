@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="700"
              x:Class="SpotiStore.Views.PlaylistFinderView">
   <DockPanel>
-    <Button  DockPanel.Dock="Bottom">Archive Selections</Button>
+    <Button Command="{Binding ArchivePlaylist}" DockPanel.Dock="Bottom">Archive Selections</Button>
     <ProgressBar DockPanel.Dock="Bottom"></ProgressBar>
     <StackPanel>
 

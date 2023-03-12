@@ -14,11 +14,11 @@ namespace SpotiStore.Models
 
         public Playlist(FullPlaylist playlist)
         {
-            PlaylistSongs = APItoProgram(playlist);
+            PlaylistSongs = PopulatePlaylistTracks(playlist);
             CreatorID = playlist.Owner.Id;
 
         }
-        IEnumerable<PlaylistItem> APItoProgram(FullPlaylist playlist)
+        IEnumerable<PlaylistItem> PopulatePlaylistTracks(FullPlaylist playlist)
         {
             //TODO: get a better name for the list below once you think of one.
              List<PlaylistItem> middle = new List<PlaylistItem>();
