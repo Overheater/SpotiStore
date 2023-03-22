@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using ReactiveUI;
 using SkiaSharp;
 using SpotiStore.Models;
@@ -62,9 +63,14 @@ namespace SpotiStore.ViewModels
             var spotifyPlaylist =  spotifyClient.Playlists.Get(PlaylistID);
             var test = spotifyPlaylist.GetAwaiter().GetResult();
             var playlist = new Playlist(test);
+            await foreach (var item in spotifyClient.Paginate(test.Tracks))
+            {
+                playlist.AddPlaylistTrack(item);
+            }
             using (var writer = new StreamWriter("C:\\Users\\ianpo\\Desktop\\Test.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                csv.Context.RegisterClassMap<songMap>();
                 csv.WriteRecords(playlist.PlaylistSongs.Select(p=>(Song)p));
             }
             return true;
@@ -75,5 +81,18 @@ namespace SpotiStore.ViewModels
 
         }
         
+    }
+    public sealed class songMap : ClassMap<Song>
+    {
+        public songMap()
+        {
+            Map(m => m.SongName);
+            Map(m => m.SongArtist);
+            Map(m => m.SongAlbum.Name);
+            Map(m => m.ReleaseDate);
+            Map(m => m.AddedDate);
+            Map(m => m.SpotifySongID);
+            Map(m => m.DiscogsLink);
+        }
     }
 }

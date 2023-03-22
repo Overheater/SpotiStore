@@ -9,24 +9,25 @@ namespace SpotiStore.Models
 {
     public class Song : PlaylistItem
     {
-        public string Name { get; set; }
-        public string Artist { get; set; }
+        public string SongName { get; set; }
+        public string SongArtist { get; set; }
         //switched to string due to the limitations in CSVhelper
         //public List<Artist> Artist { get; set; }
-        public Album Album { get; set; }
+        public Album SongAlbum { get; set; }
         public string ReleaseDate { get; set; }
         public DateTime? AddedDate { get; set; }
-        public string SongID { get; set; }
+        public string SpotifySongID { get; set; }
+        public string DiscogsLink { get; set; }
 
 
         //TODO: Build out a check on the playlist constructor that makes sure the iplayable Item is a track.
         public Song(FullTrack track,DateTime? addedDate)
         {
-            Name = track.Name;
-            Artist = GetArtists(track);
-            Album = new Album(track.Album);
-            ReleaseDate = Album.ReleaseDate;
-            SongID = track.Id;
+            SongName = track.Name;
+            SongArtist = GetArtists(track);
+            SongAlbum = new Album(track.Album);
+            ReleaseDate = SongAlbum.ReleaseDate;
+            SpotifySongID = track.Id;
             AddedDate = addedDate;
 
         }
