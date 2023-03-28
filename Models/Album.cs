@@ -20,6 +20,7 @@ namespace SpotiStore.Models
         public Album(SimpleAlbum album)
         {
             Name = album.Name;
+            ArtistName = album.Artists[0].Name;
             ID = album.Id;
             ReleaseDate = album.ReleaseDate;
 

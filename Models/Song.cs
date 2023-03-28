@@ -29,8 +29,25 @@ namespace SpotiStore.Models
             ReleaseDate = SongAlbum.ReleaseDate;
             SpotifySongID = track.Id;
             AddedDate = addedDate;
+            DiscogsLink = CreateDiscogsLink();
 
         }
+
+        private string CreateDiscogsLink()
+        {
+            StringBuilder link = new StringBuilder();
+            link.Append("https://www.discogs.com/search/?type=release");
+            var formattedAlbum = SongAlbum.Name.Replace(" ", "+");
+            var formattedArtist = SongAlbum.ArtistName.Replace(" ", "+");
+            if(formattedArtist == "Various+Artists")
+            {
+                link.AppendLine($"&title={formattedAlbum}");
+                return link.ToString();
+            }
+            link.AppendLine($"&title={formattedAlbum}&artist={formattedArtist}");
+            return link.ToString();
+        }
+
         public string GetArtists(FullTrack track)
         {   string ArtistList;
             if (track.Artists.Count > 1)
