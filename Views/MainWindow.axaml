@@ -6,13 +6,24 @@
         xmlns:views="clr-namespace:SpotiStore.Views"
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
         x:Class="SpotiStore.Views.MainWindow"
-        Width="350" Height="450"
+        Width="350" Height="100"
         Icon="/Assets/avalonia-logo.ico"
         Title="SpotiStore">
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-  <views:PlaylistFinderView/>
-
+  <DockPanel>
+    <Button Command="{Binding ArchivePlaylist}" IsEnabled="{Binding ArchiveEnabled}" DockPanel.Dock="Bottom">Archive Selections</Button>
+    <ProgressBar DockPanel.Dock="Bottom"></ProgressBar>
+    <StackPanel>
+      <Panel>
+        <TextBox Margin="4" Text="{Binding PlaylistID}" Watermark="Spotify Playlist ID"></TextBox>
+        <Button Margin="4" Command="{Binding QueryPlaylist}" HorizontalAlignment="Right">Search</Button>
+      </Panel>
+      <Panel>
+        <TextBlock Margin="4"  Width="225" FontWeight="Bold" Text="{Binding PlaylistName, Mode=OneWay}" HorizontalAlignment="Left"> </TextBlock>
+      </Panel>
+    </StackPanel>
+  </DockPanel>
 </Window>
 

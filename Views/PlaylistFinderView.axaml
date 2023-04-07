@@ -2,13 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="700"
+             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="450"
              x:Class="SpotiStore.Views.PlaylistFinderView">
   <DockPanel>
-    <Button Command="{Binding ArchivePlaylist}" DockPanel.Dock="Bottom">Archive Selections</Button>
+    <Button Command="{Binding ArchivePlaylist}" IsEnabled="{Binding ArchiveEnabled}" DockPanel.Dock="Bottom">Archive Selections</Button>
     <ProgressBar DockPanel.Dock="Bottom"></ProgressBar>
     <StackPanel>
-
       <Panel>
         <TextBox Margin="4" Text="{Binding PlaylistID}" Watermark="Spotify Playlist ID"></TextBox>
         <Button Margin="4" Command="{Binding QueryPlaylist}" HorizontalAlignment="Right">Search</Button>
@@ -16,17 +15,6 @@
       <Panel>
         <TextBlock Margin="4"  Width="225" FontWeight="Bold" Text="{Binding PlaylistName, Mode=OneWay}" HorizontalAlignment="Left"> </TextBlock>
       </Panel>
-      <ScrollViewer>
-        <StackPanel Tag="Data Option">
-          <CheckBox Margin="4">Track number</CheckBox>
-          <CheckBox Margin="4">Song Title</CheckBox>
-          <CheckBox Margin="4">Artist Name</CheckBox>
-          <CheckBox Margin="4">Album Name</CheckBox>
-          <CheckBox Margin="4">Album Release Year</CheckBox>
-          <CheckBox Margin="4">Album Publisher</CheckBox>
-          <CheckBox Margin="4">Discogs Links</CheckBox>
-        </StackPanel>
-      </ScrollViewer>
     </StackPanel>
   </DockPanel>
 </UserControl>

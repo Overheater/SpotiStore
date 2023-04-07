@@ -1,4 +1,5 @@
-﻿using CsvHelper;
+﻿using Avalonia.Controls;
+using CsvHelper;
 using CsvHelper.Configuration;
 using ReactiveUI;
 using SkiaSharp;
@@ -22,8 +23,15 @@ namespace SpotiStore.ViewModels
 
         string playlistID;
         string playlistName;
-
+        private bool archiveEnabled = false;
         public ICommand Command { get; set; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void RaisePropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public string PlaylistID
         {
             get => playlistID;
@@ -38,19 +46,35 @@ namespace SpotiStore.ViewModels
                 RaisePropertyChanged();
             } 
         }
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void RaisePropertyChanged([CallerMemberName] string? propertyName = null)
+        public bool ArchiveEnabled
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            get => archiveEnabled;
+            set {
+                archiveEnabled = value;
+                RaisePropertyChanged();
+            }
 
+        }
 
         public async Task<string> QueryPlaylist()
         {
-            var playlist = await spotifyClient.Playlists.Get(PlaylistID);
-            PlaylistName = playlist.Name;
-            RaisePropertyChanged(playlistName);
-            return playlist.Name;
+            SpotifyAPI.Web.FullPlaylist playlist;
+            try
+            {
+                playlist = await spotifyClient.Playlists.Get(PlaylistID);
+                PlaylistName = playlist.Name;
+                ArchiveEnabled = true;
+
+                RaisePropertyChanged(playlistName);
+                return playlist.Name;
+
+            }
+            catch (Exception e)
+            {
+                ArchiveEnabled = false;
+                return "No Playlist Found";
+            }
+
         }
         public async Task<bool> ArchivePlaylist()
         {
@@ -67,6 +91,7 @@ namespace SpotiStore.ViewModels
             {
                 playlist.AddPlaylistTrack(item);
             }
+            //var fileLocation = new OpenFileDialog()
             using (var writer = new StreamWriter("C:\\Users\\ianpo\\Desktop\\Test.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
@@ -75,6 +100,24 @@ namespace SpotiStore.ViewModels
             }
             return true;
         }
+
+        //public async Task GetPath()
+        //{
+        //    var dialog = new OpenFileDialog();
+        //    dialog.Filters.Add(new FileDialogFilter() { Extensions = { "CSV" } });
+        //    dialog.AllowMultiple = true;
+
+        //    var result = await dialog.ShowAsync();
+
+        //    if (result != null)
+        //    {
+        //        await GetPath(result);
+        //    }
+        //}
+
+
+
+
         public MainWindowViewModel()
         {
            createSpotifyClient();
