@@ -1,4 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using CsvHelper;
 using CsvHelper.Configuration;
 using ReactiveUI;
@@ -91,8 +93,9 @@ namespace SpotiStore.ViewModels
             {
                 playlist.AddPlaylistTrack(item);
             }
-            //var fileLocation = new OpenFileDialog()
-            using (var writer = new StreamWriter("C:\\Users\\ianpo\\Desktop\\Test.csv"))
+            var fileLocation = await GetPath();
+            if (fileLocation == "") return false;
+            using (var writer = new StreamWriter(fileLocation))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 csv.Context.RegisterClassMap<songMap>();
@@ -101,19 +104,30 @@ namespace SpotiStore.ViewModels
             return true;
         }
 
-        //public async Task GetPath()
-        //{
-        //    var dialog = new OpenFileDialog();
-        //    dialog.Filters.Add(new FileDialogFilter() { Extensions = { "CSV" } });
-        //    dialog.AllowMultiple = true;
+        public async Task<string> GetPath()
+        {
 
-        //    var result = await dialog.ShowAsync();
+            if(Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
 
-        //    if (result != null)
-        //    {
-        //        await GetPath(result);
-        //    }
-        //}
+                var task = Task.Run(() =>
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog
+                    {
+                        Title = "Choose file name",
+                        AllowMultiple = true
+                    };
+                    openFileDialog.Filters.Add(new FileDialogFilter { Name = "spreadsheets", Extensions = { "csv" } });
+                    var outPathStrings = openFileDialog.ShowAsync(desktop.MainWindow).ConfigureAwait(false);
+                    return outPathStrings;
+                });
+                var tasktest = task.GetAwaiter().GetResult();
+                //var fileresult = task.Result;
+                return String.Join(" ", tasktest);
+            }
+
+            return "";
+        }
 
 
 
