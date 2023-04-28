@@ -109,21 +109,15 @@ namespace SpotiStore.ViewModels
 
             if(Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-
-                var task = Task.Run(() =>
-                {
-                    OpenFileDialog openFileDialog = new OpenFileDialog
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
                     {
                         Title = "Choose file name",
-                        AllowMultiple = true
                     };
-                    openFileDialog.Filters.Add(new FileDialogFilter { Name = "spreadsheets", Extensions = { "csv" } });
-                    var outPathStrings = openFileDialog.ShowAsync(desktop.MainWindow).ConfigureAwait(false);
-                    return outPathStrings;
-                });
-                var tasktest = task.GetAwaiter().GetResult();
-                //var fileresult = task.Result;
-                return String.Join(" ", tasktest);
+                    saveFileDialog.Filters.Add(new FileDialogFilter { Name = "spreadsheets", Extensions = { "csv" } });
+                    var outPathStrings = await saveFileDialog.ShowAsync(desktop.MainWindow).ConfigureAwait(false);
+
+                    //var fileresult = task.Result;
+                    return String.Join(" ", outPathStrings);
             }
 
             return "";
