@@ -29,6 +29,6 @@ To build the app you will need to have Avalonia 0.9.12 or newer. After building 
 
 ## Obtaining Spotify playlist IDs
 
-While there are multiple ways to get a Spotify playlist ID, the easiest way would be to use the [Spotify Web API] (https://open.spotify.com) and navigate to your chosen playlist.  
+While there are multiple ways to get a Spotify playlist ID, the easiest way would be to use the [Spotify Web API](https://open.spotify.com) and navigate to your chosen playlist.  
 
 The Playlist ID is displayed after the last forward slash of the URL and generally looks like this:  2dgjh8B6g70o8Ll3WVD8LG
