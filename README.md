@@ -2,7 +2,7 @@
 
 Spotistore is a small cross-platform utility for generating tracklist spreadsheets from Spotify playlists.
 The compact UI allows you to input any playlist ID, then save the playlist's information to a CSV file.  
-
+![generated playlist CSV](https://github.com/Overheater/MDPictures/blob/main/Spotistore/CSV.png)
 The playlist information recorded in the CSV includes track names, album names, song artists, release dates, spotify track IDs, added to playlist dates, and Discog links for physical releases.
 
 ## Using Spotistore
@@ -29,6 +29,16 @@ To build the app you will need to have Avalonia 0.9.12 or newer. After building 
 
 ## Obtaining Spotify playlist IDs
 
-While there are multiple ways to get a Spotify playlist ID, the easiest way would be to use the [Spotify Web API](https://open.spotify.com) and navigate to your chosen playlist.  
+While there are multiple ways to get a Spotify playlist ID, the easiest way would be to use the [Spotify Web Player](https://open.spotify.com) and navigate to your chosen playlist, then get the ID from the URL.
+The Playlist ID is displayed after the last forward slash of the URL and generally looks like this:  
 
-The Playlist ID is displayed after the last forward slash of the URL and generally looks like this:  2dgjh8B6g70o8Ll3WVD8LG
+
+![Url Option](https://github.com/Overheater/MDPictures/blob/main/Spotistore/PlaylistID.png)  
+
+
+If you are using the desktop app, you can get the url of the playlist via the share option found within the 3 dots menu of the playlist. the option is shown below:  
+
+![share option](https://github.com/Overheater/MDPictures/blob/main/Spotistore/PlaylistID2.png)  
+
+
+
