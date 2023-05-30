@@ -14,6 +14,7 @@ namespace SpotiStore.Models
         //switched to string due to the limitations in CSVhelper
         //public List<Artist> Artist { get; set; }
         public Album SongAlbum { get; set; }
+        public string AlbumName { get;  set; }
         public string ReleaseDate { get; set; }
         public DateTime? AddedDate { get; set; }
         public string SpotifySongID { get; set; }
@@ -26,6 +27,7 @@ namespace SpotiStore.Models
             SongName = track.Name;
             SongArtist = GetArtists(track);
             SongAlbum = new Album(track.Album);
+            AlbumName = track.Album.Name;
             ReleaseDate = SongAlbum.ReleaseDate;
             SpotifySongID = track.Id;
             AddedDate = addedDate;

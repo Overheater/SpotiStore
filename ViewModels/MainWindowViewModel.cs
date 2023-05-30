@@ -98,7 +98,7 @@ namespace SpotiStore.ViewModels
             using (var writer = new StreamWriter(fileLocation))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                csv.Context.RegisterClassMap<songMap>();
+                csv.Context.RegisterClassMap<SongMap>();
                 csv.WriteRecords(playlist.PlaylistSongs.Select(p=>(Song)p));
             }
             return true;
@@ -133,13 +133,13 @@ namespace SpotiStore.ViewModels
         }
         
     }
-    public sealed class songMap : ClassMap<Song>
+    public sealed class SongMap : ClassMap<Song>
     {
-        public songMap()
+        public SongMap()
         {
             Map(m => m.SongName);
             Map(m => m.SongArtist);
-            Map(m => m.SongAlbum.Name);
+            Map(m => m.AlbumName);
             Map(m => m.ReleaseDate);
             Map(m => m.AddedDate);
             Map(m => m.SpotifySongID);
